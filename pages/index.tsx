@@ -1,4 +1,5 @@
 import { WASMContext } from '@/context/WASM';
+import { DefaultLayout } from '@/layout/DefaultLayout';
 import { useContext } from 'react';
 
 export default function Home() {
@@ -6,10 +7,14 @@ export default function Home() {
     if (!wasmctx.wasm) return <></>;
 
     return (
-        <div>
-            <p>
-                <code>wasmctx.wasm.add(2,5)</code> = {wasmctx.wasm.add(2, 5)}
-            </p>
-        </div>
+        <DefaultLayout title='Home'>
+            <h1>CWJH Tools & Projects</h1>
+            <div>
+                <p>
+                    <span>WASM example:</span>
+                    <code> wasmctx.wasm.add(2,5) = {wasmctx.wasm.add(2, 5)}</code>
+                </p>
+            </div>
+        </DefaultLayout>
     );
 }
