@@ -60,6 +60,11 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@klos71/cwjh_wasm@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@klos71/cwjh_wasm/-/cwjh_wasm-0.0.1.tgz#55c5b58fdcc7e067879047a8b3627c14f4ce9e7b"
+  integrity sha512-YsAqoVsJk1qCUoKp+eYJBD6eKdbffftJuZkK2L9ttlGlwsYdQ+xppdTo0fP2g6yhrC0Q04+jgLRtIBdYMsGEZA==
+
 "@next/env@13.2.4":
   version "13.2.4"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-13.2.4.tgz#8b763700262b2445140a44a8c8d088cef676dbae"
@@ -2000,9 +2005,6 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
-
-"wasm@file:wasm/pkg":
-  version "0.1.0"
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"

@@ -5,12 +5,12 @@
     "license": "GPL2",
     "scripts": {
         "dev": "next dev",
-        "build": "wasm-pack build ./wasm --target web --release && next build",
-        "build-wasm": "wasm-pack build ./wasm --target web",
+        "build": "next build",
         "start": "next start",
         "lint": "next lint"
     },
     "dependencies": {
+        "@klos71/cwjh_wasm": "^0.0.1",
         "@types/node": "18.15.11",
         "@types/react": "18.0.31",
         "@types/react-dom": "18.0.11",
@@ -19,7 +19,6 @@
         "next": "13.2.4",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "typescript": "5.0.3",
-        "wasm": "file:wasm/pkg"
+        "typescript": "5.0.3"
     }
 }
