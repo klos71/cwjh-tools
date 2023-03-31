@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
-import Init, { add } from '../wasm/pkg';
+import { WASMContext } from '@/context/WASM';
+import { useContext } from 'react';
+
 export default function Home() {
-    useEffect(() => {
-        Init().then(() => {
-            console.log('From WASM:', add(1, 2));
-        });
-    });
+    const wasmctx = useContext(WASMContext);
+    if (!wasmctx.wasm) return <></>;
+
     return (
         <div>
-            <p>Test</p>
+            <p>
+                <code>wasmctx.wasm.add(2,5)</code> = {wasmctx.wasm.add(2, 5)}
+            </p>
         </div>
     );
 }
