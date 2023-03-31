@@ -2,6 +2,7 @@
     "name": "cwjh-tools",
     "version": "0.1.0",
     "private": true,
+    "license": "GPL2",
     "scripts": {
         "dev": "next dev",
         "build": "wasm-pack build ./wasm --target web --release && next build",
