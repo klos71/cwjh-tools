@@ -5,7 +5,8 @@ const nextConfig = {
         styledComponents: true,
     },
     webpack: function (config) {
-        config.experiments = { asyncWebAssembly: true };
+        config.experiments = { asyncWebAssembly: true, layers: true };
+
         return config;
     },
 };
