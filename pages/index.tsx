@@ -1,14 +1,20 @@
-import { useEffect } from 'react';
-import Init, { add } from '../wasm/pkg';
+import { WASMContext } from '@/context/WASM';
+import { DefaultLayout } from '@/layout/DefaultLayout';
+import { useContext } from 'react';
+
 export default function Home() {
-    useEffect(() => {
-        Init().then(() => {
-            console.log('From WASM:', add(1, 2));
-        });
-    });
+    const wasmctx = useContext(WASMContext);
+    if (!wasmctx.wasm) return <></>;
+
     return (
-        <div>
-            <p>Test</p>
-        </div>
+        <DefaultLayout title='Home'>
+            <h1>CWJH Tools & Projects</h1>
+            <div>
+                <p>
+                    <span>WASM example:</span>
+                    <code> wasmctx.wasm.add(2,5) = {wasmctx.wasm.add(2, 5)}</code>
+                </p>
+            </div>
+        </DefaultLayout>
     );
 }
