@@ -24,28 +24,6 @@ const StyledCode = styled.code`
     min-height: 2rem;
 `;
 
-const CopyButton = styled.button`
-    position: absolute;
-    top: -7px;
-    right: -7px;
-    padding: 0.4rem;
-    background-color: #191919;
-    border-radius: 25%;
-    color: white;
-    cursor: pointer;
-    border: 0;
-    &:hover {
-        background-color: #4f4d4d;
-    }
-    &:active {
-        background-color: #888888;
-    }
-    &.copied {
-        background-color: #00d865;
-        border: 0;
-    }
-`;
-
 const AsciiBinaryPage = () => {
     const wasmctx = useContext(WASMContext);
 
@@ -53,7 +31,6 @@ const AsciiBinaryPage = () => {
     const [binary, setBinary] = useState('');
     const [textCode, setTextCode] = useState('');
     const [binarycode, setBinarycode] = useState('');
-    const [copied, setCopied] = useState(false);
 
     useEffect(() => {
         wasmctx.wasm && setBinary(wasmctx.wasm.string_to_binary(text));
@@ -66,17 +43,6 @@ const AsciiBinaryPage = () => {
             console.info(e);
         }
     }, [binarycode, wasmctx.wasm]);
-
-    const CopyToClip = (text: string) => {
-        navigator.clipboard.writeText(text);
-        setCopied(true);
-    };
-
-    useEffect(() => {
-        setTimeout(() => {
-            setCopied(false);
-        }, 300);
-    }, [copied]);
 
     if (!wasmctx.wasm) return <></>;
 
@@ -101,8 +67,31 @@ const AsciiBinaryPage = () => {
     );
 };
 
+const CopyButton = styled.button`
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    padding: 0.4rem;
+    background-color: #191919;
+    border-radius: 25%;
+    color: white;
+    cursor: pointer;
+    border: 0;
+    &:hover {
+        background-color: #4f4d4d;
+    }
+    &:active {
+        background-color: #888888;
+    }
+    &.copied {
+        background-color: #00d865;
+        border: 0;
+    }
+`;
+
 const CopyButtonComponent = ({ text }: { text: string }) => {
     const [copied, setCopied] = useState(false);
+
     const CopyToClip = (text: string) => {
         navigator.clipboard.writeText(text);
         setCopied(true);

@@ -39,7 +39,7 @@ const StyledTitle = styled.h2`
     padding: 1rem;
 `;
 
-export const DefaultLayout = ({ title, children }: { title: string; children: JSX.Element | JSX.Element[] }) => {
+export const DefaultLayout = ({ title, description, children }: { title: string; description?: string; children: JSX.Element | JSX.Element[] }) => {
     const router = useRouter();
 
     const findRouteInAccordion = (routes: string[]) => {
@@ -50,6 +50,9 @@ export const DefaultLayout = ({ title, children }: { title: string; children: JS
         <>
             <Head>
                 <title>{title} | CWJH Tools</title>
+                <meta name='description' content={`Simple WASM implementations of small things for fun. ${description}`} />
+                <meta name='author' content='Klos71 & cwinsnes' />
+                <meta name='keywords' content='WASM, Next.JS' />
             </Head>
 
             <Stylednav>
