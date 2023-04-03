@@ -44,8 +44,6 @@ const AsciiBinaryPage = () => {
         }
     }, [binarycode, wasmctx.wasm]);
 
-    if (!wasmctx.wasm) return <></>;
-
     return (
         <DefaultLayout title='ASCII to Binary'>
             <h1>ASCII {'<=>'} Binary</h1>

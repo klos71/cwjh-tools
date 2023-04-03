@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 export default function Home() {
     const wasmctx = useContext(WASMContext);
-    if (!wasmctx.wasm) return <></>;
+    const wasmResult = wasmctx.wasm && wasmctx.wasm.add(2, 5);
 
     return (
         <DefaultLayout title='Home'>
@@ -12,7 +12,7 @@ export default function Home() {
             <div>
                 <p>
                     <span>WASM example:</span>
-                    <code> wasmctx.wasm.add(2,5) = {wasmctx.wasm.add(2, 5)}</code>
+                    <code> wasmctx.wasm.add(2,5) = {wasmResult}</code>
                 </p>
             </div>
         </DefaultLayout>
