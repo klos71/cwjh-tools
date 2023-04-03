@@ -51,14 +51,24 @@ const AsciiBinaryPage = () => {
 
     const [text, setText] = useState<string>('');
     const [binary, setBinary] = useState('');
+    const [textCode, setTextCode] = useState('');
+    const [binarycode, setBinarycode] = useState('');
     const [copied, setCopied] = useState(false);
 
     useEffect(() => {
         wasmctx.wasm && setBinary(wasmctx.wasm.string_to_binary(text));
     }, [text, wasmctx.wasm]);
 
-    const CopyToClip = () => {
-        navigator.clipboard.writeText(binary);
+    useEffect(() => {
+        try {
+            wasmctx.wasm && setTextCode(wasmctx.wasm.binary_to_string(binarycode));
+        } catch (e) {
+            console.info(e);
+        }
+    }, [binarycode, wasmctx.wasm]);
+
+    const CopyToClip = (text: string) => {
+        navigator.clipboard.writeText(text);
         setCopied(true);
     };
 
@@ -69,19 +79,45 @@ const AsciiBinaryPage = () => {
     }, [copied]);
 
     if (!wasmctx.wasm) return <></>;
+
     return (
         <DefaultLayout title='ASCII to Binary'>
-            <h1>ASCII to Binary</h1>
+            <h1>ASCII {'<=>'} Binary</h1>
+            <h2>ASCII to Binary</h2>
             <StyledPage>
-                <StyledTextArea value={text} onChange={(e) => setText(e.target.value)} placeholder='Super binary message...' />
+                <StyledTextArea value={text} onChange={(e) => setText(e.target.value)} placeholder='Super ASCII message...' />
                 <StyledCode>
                     {binary}
-                    <CopyButton onClick={CopyToClip} className={copied ? 'copied' : ''}>
-                        <FaClipboard />
-                    </CopyButton>
+                    <CopyButtonComponent text={binary} />
+                </StyledCode>
+                <h2>Binary to ASCII</h2>
+                <StyledTextArea value={binarycode} onChange={(e) => setBinarycode(e.target.value)} placeholder='Super binary message...' />
+                <StyledCode>
+                    {textCode}
+                    <CopyButtonComponent text={textCode} />
                 </StyledCode>
             </StyledPage>
         </DefaultLayout>
+    );
+};
+
+const CopyButtonComponent = ({ text }: { text: string }) => {
+    const [copied, setCopied] = useState(false);
+    const CopyToClip = (text: string) => {
+        navigator.clipboard.writeText(text);
+        setCopied(true);
+    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            setCopied(false);
+        }, 300);
+    }, [copied]);
+
+    return (
+        <CopyButton onClick={() => CopyToClip(text)} className={copied ? 'copied' : ''}>
+            <FaClipboard />
+        </CopyButton>
     );
 };
 export default AsciiBinaryPage;

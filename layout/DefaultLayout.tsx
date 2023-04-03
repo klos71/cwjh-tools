@@ -2,8 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { FaGithub, FaCaretDown, FaCaretUp, FaWrench } from 'react-icons/fa';
-import { SiWebassembly } from 'react-icons/si';
+import { FaGithub, FaCaretDown, FaCaretUp, FaWrench, FaHome } from 'react-icons/fa';
+import { SiNextdotjs, SiWebassembly } from 'react-icons/si';
 import { useState } from 'react';
 
 const Stylednav = styled.nav`
@@ -35,6 +35,10 @@ const Content = styled.main`
     padding: 1px 16px;
 `;
 
+const StyledTitle = styled.h2`
+    padding: 1rem;
+`;
+
 export const DefaultLayout = ({ title, children }: { title: string; children: JSX.Element | JSX.Element[] }) => {
     const router = useRouter();
 
@@ -49,17 +53,21 @@ export const DefaultLayout = ({ title, children }: { title: string; children: JS
             </Head>
 
             <Stylednav>
+                <StyledTitle>CWJH_Tools</StyledTitle>
                 <Link href='/' className={router.asPath === '/' ? 'active' : ''}>
-                    Home
+                    <FaHome /> Home
                 </Link>
                 <Accordion title='Tools' icon={<FaWrench size='1em' />} open={findRouteInAccordion(['/tools/ascii-binary'])}>
                     <Link href='/tools/ascii-binary' className={router.asPath === '/tools/ascii-binary' ? 'active' : ''}>
-                        ASCII {'=>'} Binary
+                        ASCII {'<=>'} Binary
                     </Link>
                 </Accordion>
                 <Accordion title='Github' icon={<FaGithub size='1em' />}>
-                    <Link href='https://github.com/klos71/cwjh_wasm_tools' target='_blank' className={router.asPath === '/about' ? 'active' : ''}>
+                    <Link href='https://github.com/klos71/cwjh_wasm_tools' target='_blank'>
                         <SiWebassembly /> cwjh_wasm_tools
+                    </Link>
+                    <Link href='https://github.com/klos71/cwjh-tools' target='_blank'>
+                        <SiNextdotjs /> cwjh_tools
                     </Link>
                 </Accordion>
             </Stylednav>
@@ -93,7 +101,17 @@ const AccordionTitleWrapper = styled.div`
     }
 `;
 
-const Accordion = ({ children, title, open = false, icon }: { children: JSX.Element; title: string; open?: boolean; icon?: JSX.Element }) => {
+const Accordion = ({
+    children,
+    title,
+    open = false,
+    icon,
+}: {
+    children: JSX.Element | JSX.Element[];
+    title: string;
+    open?: boolean;
+    icon?: JSX.Element;
+}) => {
     const [o, setO] = useState<boolean>(open);
     return (
         <AccordionWrapper>
