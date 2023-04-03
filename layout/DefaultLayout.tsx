@@ -45,11 +45,11 @@ export const DefaultLayout = ({ title, description, children }: { title: string;
     const findRouteInAccordion = (routes: string[]) => {
         return routes.includes(router.asPath);
     };
-
+    const metaTitle = `${title} | CWJH Tools`;
     return (
         <>
             <Head>
-                <title>{title} | CWJH Tools</title>
+                <title>{metaTitle}</title>
                 <meta name='description' content={`Simple WASM implementations of small things for fun. ${description}`} />
                 <meta name='author' content='Klos71 & cwinsnes' />
                 <meta name='keywords' content='WASM, Next.JS' />
